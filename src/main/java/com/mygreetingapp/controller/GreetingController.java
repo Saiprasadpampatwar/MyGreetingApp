@@ -4,11 +4,9 @@ import com.mygreetingapp.model.Greeting;
 import com.mygreetingapp.model.User;
 import com.mygreetingapp.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -27,9 +25,19 @@ public class GreetingController {
         return greetingService.addGreeting(user);
     }
 
-    @RequestMapping("/id")
-    public Greeting getId(@RequestParam(value = "id") long id) {
+    @RequestMapping("/{id}")
+    public Greeting getId(@PathVariable long id) {
         return greetingService.getGreetingById(id);
+    }
+
+    @GetMapping("/all")
+    public List<Greeting> getAllData(){
+        return greetingService.getAllData();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Greeting deleteGreeting(@PathVariable long id){
+        return greetingService.deleteGreetingByID(id);
     }
 
 
