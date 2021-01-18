@@ -1,12 +1,23 @@
 package com.mygreetingapp.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "GREETINGS")
 public class Greeting {
+    @Id
     private  long greetingId;
     private String message;
 
     public Greeting(long greetingId, String message) {
         this.greetingId = greetingId;
         this.message = message;
+    }
+
+    public Greeting() {
+        super();
     }
 
     public long getGreetingId() {
